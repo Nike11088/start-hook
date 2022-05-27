@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Collapse as BsCollapse } from "bootstrap";
+import "bootstrap-icons/font/bootstrap-icons.css";
 import PropTypes from "prop-types";
+
 const CollapseWrapper = ({ children, title, name }) => {
     const [display, setDisaplay] = useState(false);
     const collapseRef = useRef();
