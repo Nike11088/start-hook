@@ -1,6 +1,5 @@
 import React from "react";
 import CollapseWrapper from "../common/collapse";
-import ComponentsList from "../examples/children/ComponentsList";
 import PropTypes from "prop-types";
 
 const ChildrenExercise = () => {
@@ -21,6 +20,23 @@ const ChildrenExercise = () => {
             </ComponentsList>
         </CollapseWrapper>
     );
+};
+
+const ComponentsList = ({ children }) => {
+    const arrayOfChildren = React.Children.toArray(children);
+    return React.Children.map(arrayOfChildren, (child) =>
+        React.cloneElement(child, {
+            ...child.props,
+            num: +child.key.replace(".", "") + 1
+        })
+    );
+};
+
+ComponentsList.propTypes = {
+    children: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.node),
+        PropTypes.node
+    ])
 };
 
 const Component = ({ num }) => {
